@@ -1,0 +1,15 @@
+config:
+  azure-native:location: "North Europe"
+  blah:location: "North Europe"
+  # primary_database_password:
+  #   description: SQL Server password (complex enough to satisfy Azure policy)
+  #   secret: true
+  blah:vnetcidr: "192.168.0.0/16"
+  blah:websubnetcidr: "192.168.1.0/24"
+  blah:appsubnetcidr: "192.168.2.0/24"
+  blah:dbsubnetcidr: "192.168.3.0/24"
+  blah:web_host_name: "webserver"
+  blah:app_host_name: "appserver"
+  blah:admin_username: "diarmaid"
+  blah:primary_database: "devops2021-test-sql-database"
+  blah:primary_database_version: "12.0"
