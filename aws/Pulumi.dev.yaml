@@ -1,0 +1,4 @@
+config:
+  aws:region: eu-west-1
+  dev:db_username: "dbadmin"
+  dev:db_password: "Z?U6R$2t"
