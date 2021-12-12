@@ -1,5 +1,5 @@
 import pulumi
-from pulumi_azure import network, sql, compute
+from pulumi_azure import network, postgresql, compute
 import pulumi_azure_native as azure_native
 
 
@@ -48,15 +48,15 @@ db_subnet = azure_native.network.Subnet("db-subnet",
     address_prefix=dbsubnetcidr)
 
 
-web_availability_set = azure_native.compute.AvailabilitySet("web-availability-set",
-    availability_set_name="web-availability-set",
-    resource_group_name=azure_pulumi_rg.name,
-    platform_fault_domain_count=1,
-    platform_update_domain_count=1,
-    sku={
-        "name": "Aligned"
-        }
-    )
+# web_availability_set = azure_native.compute.AvailabilitySet("web-availability-set",
+#     availability_set_name="web-availability-set",
+#     resource_group_name=azure_pulumi_rg.name,
+#     platform_fault_domain_count=1,
+#     platform_update_domain_count=1,
+#     sku={
+#         "name": "Aligned"
+#         }
+#     )
 
 web_public_ip = azure_native.network.PublicIPAddress("web-public-ip",
     resource_group_name=azure_pulumi_rg.name,
@@ -299,14 +299,16 @@ db_nsg_subnet = network.SubnetNetworkSecurityGroupAssociation("db-nsg-subnet-ass
     opts=pulumi.ResourceOptions(depends_on=[app_nsg_subnet]))
 
 
-devops_test_sql_db_server = sql.SqlServer("devops-test-sql-db-server",
-    name="devops-test-sql-db-server",
+postgres_db_server = postgresql.Server("pqsqldbserver62a",
+    location="North Europe",
     resource_group_name=azure_pulumi_rg.name,
-    version=primary_database_version,
-    administrator_login=admin_username,
-    administrator_login_password="p@$$w0Rd")
-
-db = sql.Database("db",
-    name="db",
-    resource_group_name=azure_pulumi_rg.name,
-    server_name=devops_test_sql_db_server.name)
+    administrator_login="psqladmin",
+    administrator_login_password="H@Sh1CoR3!",
+    sku_name="GP_Gen5_4",
+    version="9.6",
+    storage_mb=5120,
+    backup_retention_days=7,
+    geo_redundant_backup_enabled=False,
+    auto_grow_enabled=False,
+    public_network_access_enabled=False,
+    ssl_enforcement_enabled=False)

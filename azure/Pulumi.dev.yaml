@@ -1,15 +1,19 @@
 config:
   azure-native:location: "North Europe"
-  blah:location: "North Europe"
+  sampleproject:location: "North Europe"
+  sampleproject:vnetcidr: "192.168.0.0/16"
+  sampleproject:websubnetcidr: "192.168.1.0/24"
+  sampleproject:appsubnetcidr: "192.168.2.0/24"
+  sampleproject:dbsubnetcidr: "192.168.3.0/24"
+  sampleproject:web_host_name: "webserver"
+  sampleproject:app_host_name: "appserver"
+  sampleproject:admin_username: "diarmaid"
+  sampleproject:primary_database: "devops2021-test-postgres-database"
+  sampleproject:primary_database_version: "12.0"
+
+
   # primary_database_password:
   #   description: SQL Server password (complex enough to satisfy Azure policy)
   #   secret: true
-  blah:vnetcidr: "192.168.0.0/16"
-  blah:websubnetcidr: "192.168.1.0/24"
-  blah:appsubnetcidr: "192.168.2.0/24"
-  blah:dbsubnetcidr: "192.168.3.0/24"
-  blah:web_host_name: "webserver"
-  blah:app_host_name: "appserver"
-  blah:admin_username: "diarmaid"
-  blah:primary_database: "devops2021-test-sql-database"
-  blah:primary_database_version: "12.0"
+  #dev:web_host_name: "webserver"
+  #dev:app_host_name: "appserver"
