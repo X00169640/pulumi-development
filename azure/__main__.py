@@ -205,21 +205,7 @@ app_nsg_subnet = network.SubnetNetworkSecurityGroupAssociation("app-nsg-subnet-a
 app_nic_sg_assoc = network.NetworkInterfaceSecurityGroupAssociation("app-nic-sg-assoc",
     network_interface_id=app_network_interface.id,
     network_security_group_id=appnetworksg.id)
-# app_nsg_subnet = azure.network.SubnetNetworkSecurityGroupAssociation("app-nsg-subnet",
-#     subnet_id=app_subnet_id,
-#     network_security_group_id=appnetworksg.id,
-#     opts=ResourceOptions(depends_on=[web_nsg_subnet]))
-# app_network_interface = azure.network.NetworkInterface("app-network-interface",
-#     resource_group_name=azure_pulumi_rg.name,
-#     location=location,
-#     ip_configurations=[{
-#         "name": "app-webserver",
-#         "subnet_id": app_subnet_id,
-#         "privateIpAddressAllocation": "Dynamic",
-#     }])
-# app_nic_sg_assoc = azure.network.NetworkInterfaceSecurityGroupAssociation("app-nic-sg-assoc",
-#     network_interface_id=app_network_interface.id,
-#     network_security_group_id=appnetworksg.id)
+
 app_vm = compute.VirtualMachine("app-vm",
     name="app-vm",
     resource_group_name=azure_pulumi_rg.name,
